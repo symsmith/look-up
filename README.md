@@ -11,7 +11,7 @@ When a break starts, Look Up covers your screens with a slow breathing animation
 </p>
 
 <p align="center">
-  <img src="docs/images/panel.png" alt="Settings panel with Enabled switch, break interval, break duration and break text" width="340">
+  <img src="docs/images/panel.png" alt="Settings panel with Enabled switch, break interval, break duration and break text" width="436">
 </p>
 
 ## Features
