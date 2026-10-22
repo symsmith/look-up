@@ -10,7 +10,7 @@ final class SystemActivityMonitor: ActivityDetecting {
         ActivityClassifier.pauseReason(
             assertions: PowerAssertionReader.current(),
             ownPID: ownPID,
-            microphoneInUse: AudioInputProbe.isInUse(),
+            microphoneInUse: AudioInputProbe.isInUse(excluding: ownPID),
             cameraInUse: CameraProbe.isInUse()
         )
     }
