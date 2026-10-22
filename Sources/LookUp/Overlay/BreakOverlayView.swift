@@ -34,12 +34,12 @@ struct BreakOverlayView: View {
 }
 
 private enum Palette {
-    static let night = Color(red: 0.02, green: 0.04, blue: 0.11)
-    static let indigo = Color(red: 0.13, green: 0.11, blue: 0.36)
-    static let deepTeal = Color(red: 0.02, green: 0.17, blue: 0.22)
-    static let teal = Color(red: 0.30, green: 0.82, blue: 0.80)
-    static let periwinkle = Color(red: 0.42, green: 0.45, blue: 0.95)
-    static let violet = Color(red: 0.62, green: 0.38, blue: 0.92)
+    static let night = Color(red: 0.04, green: 0.05, blue: 0.07)
+    static let indigo = Color(red: 0.09, green: 0.09, blue: 0.14)
+    static let deepTeal = Color(red: 0.05, green: 0.08, blue: 0.09)
+    static let teal = Color(red: 0.62, green: 0.80, blue: 0.80)
+    static let periwinkle = Color(red: 0.62, green: 0.64, blue: 0.82)
+    static let violet = Color(red: 0.66, green: 0.60, blue: 0.80)
 }
 
 private struct NightBackground: View {
@@ -50,7 +50,7 @@ private struct NightBackground: View {
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
-            .opacity(0.82)
+            .opacity(0.88)
             RadialGradient(
                 colors: [.clear, Palette.night.opacity(0.6)],
                 center: .center,
@@ -68,10 +68,10 @@ private struct BreathingOrb: View {
 
     var body: some View {
         ZStack {
-            glow(Palette.violet, size: 1.5, opacity: 0.28 + 0.22 * level)
-            glow(Palette.periwinkle, size: 1.1, opacity: 0.32 + 0.25 * level)
-            glow(Palette.teal, size: 0.85, opacity: 0.50 + 0.35 * level)
-            glow(.white, size: 0.3, opacity: 0.08 + 0.12 * level)
+            glow(Palette.violet, size: 1.5, opacity: 0.08 + 0.07 * level)
+            glow(Palette.periwinkle, size: 1.1, opacity: 0.10 + 0.08 * level)
+            glow(Palette.teal, size: 0.85, opacity: 0.14 + 0.12 * level)
+            glow(.white, size: 0.3, opacity: 0.03 + 0.05 * level)
             ring
         }
         .scaleEffect(0.65 + 0.35 * level)
@@ -100,7 +100,7 @@ private struct BreathingOrb: View {
             )
             .frame(width: diameter * 0.92, height: diameter * 0.92)
             .rotationEffect(.degrees(elapsed * 3))
-            .opacity(0.35 + 0.35 * level)
+            .opacity(0.25 + 0.25 * level)
     }
 }
 
@@ -111,7 +111,7 @@ private struct MessageBlock: View {
 
     var body: some View {
         Text(message)
-            .font(.system(size: min(56, max(44, width * 0.034)), weight: .semibold, design: .rounded))
+            .font(.system(size: min(44, max(34, width * 0.027)), weight: .semibold, design: .rounded))
             .foregroundStyle(.white)
             .multilineTextAlignment(.center)
             .shadow(color: .black.opacity(0.35), radius: 14, y: 2)
