@@ -33,11 +33,21 @@ When a break starts, Look Up covers your screens with a slow breathing animation
 2. Unzip it and move `LookUp.app` to `/Applications`.
 3. Open it. The eye icon appears in the menu bar.
 
-If a release is not notarized, macOS blocks the first launch. In that case, run this once:
+### First launch of a release that is not notarized
+
+macOS blocks the first launch and says it could not verify the app. Click `Done`, then allow the app once:
+
+1. Open **System Settings → Privacy & Security**.
+2. Scroll down to the message about Look Up and click **Open Anyway**.
+3. Confirm with your password or Touch ID.
+
+Or, from the terminal:
 
 ```bash
 xattr -dr com.apple.quarantine /Applications/LookUp.app
 ```
+
+Both do the same thing: they tell macOS you trust this app. After that, it opens normally.
 
 Requires macOS 14 Sonoma or later. Releases are universal (Apple Silicon and Intel).
 
