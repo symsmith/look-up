@@ -25,9 +25,9 @@ make icon      # redraw Resources/AppIcon.icns from scripts/make-icon.swift
 ## Manual test steps
 
 1. Run `make preview`. A break covers every screen. Check the slowly breathing orb, the text and the countdown. Press `Esc` and check that the overlay fades out.
-2. Run `make run`. Check the `eye` icon in the menu bar. Open the menu and check the status line (`Next break in 20 min`).
+2. Run `make run`. Check the `eye` icon in the menu bar. Click it and check the panel and its status line (`Next break in 20 min`).
 3. Set `Break Interval` to 5 minutes and `Break Duration` to 10 seconds. Wait for the break. Check that it ends by itself after 10 seconds.
-4. Use `Break Text…`, type a new text, save. Use `Start Break Now`. Check the new text. Clear the text and save: the default text comes back.
+4. Type a new text in the `Break text` field. Click `Start Break Now`: the panel closes and the break shows the new text. Clear the field: the next break shows the default text.
 5. Play a YouTube video in a browser. Within 1–2 seconds the icon changes to `pause.circle` and the status reads `Paused — media playing`. Pause the video: the countdown resumes from where it stopped.
 6. Join a Google Meet call (or open Photo Booth). The status reads `Paused — in a call`.
 7. Play music only (no video). The countdown keeps running.

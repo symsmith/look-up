@@ -6,11 +6,11 @@ struct LookUpApp: App {
 
     var body: some Scene {
         MenuBarExtra {
-            MenuContent(model: model)
+            SettingsPanel(model: model)
         } label: {
             Image(systemName: model.symbolName)
                 .accessibilityLabel("Look Up")
         }
-        .menuBarExtraStyle(.menu)
+        .menuBarExtraStyle(.window)
     }
 }

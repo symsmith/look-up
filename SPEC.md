@@ -17,14 +17,13 @@ A macOS menu bar app that applies the 20-20-20 rule: every N minutes, cover all 
 ### Menu bar
 
 - Icon: SF Symbol `eye` when active, `eye.slash` when disabled, `pause.circle` when paused.
-- Native menu (`MenuBarExtra` with `.menu` style). Items, top to bottom:
-  1. Status line (disabled item): `Next break in 12 min` / `Next break in less than a minute` / `Paused — media playing` / `Paused — in a call` / `On a break` / `Breaks disabled`.
-  2. `Enabled` toggle (default on).
-  3. `Break Interval` submenu: 5, 10, 15, 20, 25, 30, 45, 60 minutes (default 20). Checkmark on current value.
-  4. `Break Duration` submenu: 10, 20, 30, 45 seconds, 1, 2 minutes (default 20 seconds).
-  5. `Break Text…`: opens a native `NSAlert` with a text field, prefilled with the current text (default `Look at something far away`). Empty input restores the default.
-  6. `Start Break Now`.
-  7. Separator, `Quit Look Up` (⌘Q).
+- Clicking the icon opens a native panel (`MenuBarExtra` with `.window` style, SwiftUI grouped `Form`), 340 pt wide. Top to bottom:
+  1. Header: app icon, `Look Up`, and the status line: `Next break in 12 min` / `Next break in less than a minute` / `Paused — media playing` / `Paused — in a call` / `On a break` / `Breaks disabled`.
+  2. `Enabled` switch (default on).
+  3. `Break interval` pop-up: 5, 10, 15, 20, 25, 30, 45, 60 minutes (default 20).
+  4. `Break duration` pop-up: 10, 20, 30, 45 seconds, 1, 2 minutes (default 20 seconds).
+  5. `Break text` section: an inline text field (up to 3 lines), placeholder `Look at something far away`. Changes save as you type. A blank text shows the default on the break screen (`BreakSettings.displayMessage`).
+  6. Footer: `Quit` (⌘Q) and `Start Break Now` (prominent; closes the panel, then starts a break).
 - Settings persist in `UserDefaults`.
 
 ### Break overlay

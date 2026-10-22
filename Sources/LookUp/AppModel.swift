@@ -40,9 +40,6 @@ final class AppModel {
     func update(_ change: (inout BreakSettings) -> Void) {
         var next = settings
         change(&next)
-        if next.message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            next.message = BreakSettings.defaultMessage
-        }
         guard next != settings else { return }
         settings = next
         store.save(next)
@@ -59,17 +56,6 @@ final class AppModel {
     func skipBreak() {
         let now = Date.now
         handle(scheduler.skipBreak(now: now), now: now)
-    }
-
-    func editMessage() {
-        DispatchQueue.main.async { [self] in
-            guard let text = TextPrompt.ask(
-                title: "Break Text",
-                message: "Shown in the middle of the screen during a break.",
-                initial: settings.message
-            ) else { return }
-            update { $0.message = text }
-        }
     }
 
     private func tick() {
@@ -96,7 +82,7 @@ final class AppModel {
 
     private func showOverlay(now: Date) {
         guard case .onBreak(let remaining) = scheduler.phase else { return }
-        overlay.show(message: settings.message, endDate: now.addingTimeInterval(remaining)) { [weak self] in
+        overlay.show(message: settings.displayMessage, endDate: now.addingTimeInterval(remaining)) { [weak self] in
             self?.skipBreak()
         }
     }
