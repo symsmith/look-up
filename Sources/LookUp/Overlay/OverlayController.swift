@@ -12,8 +12,6 @@ final class OverlayController {
 
     var isVisible: Bool { !windows.isEmpty }
 
-    init() {}
-
     func show(message: String, endDate: Date, onSkip: @escaping @MainActor () -> Void) {
         model.message = message
         model.endDate = endDate

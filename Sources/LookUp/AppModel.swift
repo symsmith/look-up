@@ -26,8 +26,8 @@ final class AppModel {
         self.overlay = OverlayController()
         self.settings = settings
         self.scheduler = scheduler
-        self.statusText = MenuText.status(for: scheduler.phase)
-        self.symbolName = MenuText.symbol(for: scheduler.phase)
+        self.statusText = DisplayText.status(for: scheduler.phase)
+        self.symbolName = DisplayText.symbol(for: scheduler.phase)
         startTimer()
         observeUserPresence()
         if CommandLine.arguments.contains("--preview-break") {
@@ -70,12 +70,12 @@ final class AppModel {
         case .breakEnded: overlay.hide()
         case nil: break
         }
-        refreshMenu()
+        refreshStatus()
     }
 
-    private func refreshMenu() {
-        let status = MenuText.status(for: scheduler.phase)
-        let symbol = MenuText.symbol(for: scheduler.phase)
+    private func refreshStatus() {
+        let status = DisplayText.status(for: scheduler.phase)
+        let symbol = DisplayText.symbol(for: scheduler.phase)
         if status != statusText { statusText = status }
         if symbol != symbolName { symbolName = symbol }
     }
@@ -123,6 +123,6 @@ final class AppModel {
         guard wasAway, !isUserAway else { return }
         tick()
         scheduler.restartCountdown(now: .now)
-        refreshMenu()
+        refreshStatus()
     }
 }

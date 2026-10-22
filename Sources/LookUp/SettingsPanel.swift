@@ -11,10 +11,10 @@ struct SettingsPanel: View {
             Form {
                 Toggle("Enabled", isOn: binding(\.isEnabled))
                 Picker("Break interval", selection: binding(\.interval)) {
-                    ForEach(BreakSettings.intervalOptions, id: \.self) { Text(MenuText.duration($0)).tag($0) }
+                    ForEach(BreakSettings.intervalOptions, id: \.self) { Text(DisplayText.duration($0)).tag($0) }
                 }
                 Picker("Break duration", selection: binding(\.duration)) {
-                    ForEach(BreakSettings.durationOptions, id: \.self) { Text(MenuText.duration($0)).tag($0) }
+                    ForEach(BreakSettings.durationOptions, id: \.self) { Text(DisplayText.duration($0)).tag($0) }
                 }
                 Section("Break text") {
                     TextField("Break text", text: binding(\.message), prompt: Text(BreakSettings.defaultMessage), axis: .vertical)

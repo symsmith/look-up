@@ -1,6 +1,6 @@
 import Foundation
 
-public enum MenuText {
+public enum DisplayText {
     public static func status(for phase: SchedulerPhase) -> String {
         switch phase {
         case .disabled:
