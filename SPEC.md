@@ -50,7 +50,7 @@ A macOS menu bar app that applies the 20-20-20 rule: every N minutes, cover all 
 Polled every tick (1 s). All public APIs, no permission prompts.
 
 - **In a call** (takes priority): any of
-  - an audio input device is running somewhere (`kAudioDevicePropertyDeviceIsRunningSomewhere`, CoreAudio);
+  - another process is capturing audio input (`kAudioHardwarePropertyProcessObjectList` + `kAudioProcessPropertyIsRunningInput`, CoreAudio, macOS 14+), so music on AirPods does not count;
   - a camera is running somewhere (`kCMIODevicePropertyDeviceIsRunningSomewhere`, CoreMediaIO);
   - a power assertion named like `WebRTC has active PeerConnections` (Chrome/Chromium during Google Meet and other WebRTC calls).
 - **Media playing**: a process other than Look Up holds a `PreventUserIdleDisplaySleep` / `NoDisplaySleepAssertion` power assertion (`IOPMCopyAssertionsByProcess`). Browsers (YouTube, Netflix), QuickTime, IINA, VLC take this assertion during video playback. Known keep-awake utilities are ignored (`caffeinate`, `Amphetamine`, `KeepingYouAwake`, `Lungo`, `Theine`).
