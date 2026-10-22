@@ -8,6 +8,7 @@ final class OverlayController {
     private let model = OverlayModel()
     private var windows: [OverlayWindow] = []
     private var keyMonitor: Any?
+    private var previousApp: NSRunningApplication?
 
     var isVisible: Bool { !windows.isEmpty }
 
@@ -23,6 +24,7 @@ final class OverlayController {
         windows = NSScreen.screens.map { OverlayWindow(screen: $0, model: model) }
         installKeyMonitor()
 
+        previousApp = NSWorkspace.shared.frontmostApplication
         NSApp.activate(ignoringOtherApps: true)
         for window in windows {
             window.alphaValue = 0
@@ -43,6 +45,8 @@ final class OverlayController {
         let closing = windows
         windows = []
         removeKeyMonitor()
+        previousApp?.activate()
+        previousApp = nil
 
         NSAnimationContext.runAnimationGroup { context in
             context.duration = Self.fadeDuration
