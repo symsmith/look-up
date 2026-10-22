@@ -10,7 +10,7 @@ A macOS menu bar app that applies the 20-20-20 rule: every N minutes, cover all 
   - `LookUpCore` (library): pure, UI-free logic. Everything here is unit tested.
   - `LookUp` (executable): AppKit/SwiftUI shell, system probes, overlay windows.
   - `LookUpCoreTests`: Swift Testing (`import Testing`).
-- `scripts/build-app.sh` wraps the release binary into `build/LookUp.app` (with `Info.plist`, `LSUIElement = true`, ad-hoc signed). `make test`, `make app`, `make run`.
+- `scripts/build-app.sh` builds a universal (arm64 + x86_64) release binary and wraps it into `build/LookUp.app` (with `Info.plist`, `LSUIElement = true`). It signs ad hoc, or with Developer ID and the hardened runtime when `CODESIGN_IDENTITY` is set. `scripts/notarize.sh` and `scripts/package.sh` finish a release; `.github/workflows/release.yml` runs them on `v*` tags.
 
 ## User-facing behaviour
 

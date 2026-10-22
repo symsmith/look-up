@@ -1,4 +1,4 @@
-.PHONY: build test app icon run preview install clean
+.PHONY: build test app dist icon run preview install clean
 
 build:
 	swift build
@@ -8,6 +8,9 @@ test:
 
 app:
 	scripts/build-app.sh
+
+dist: app
+	scripts/package.sh
 
 icon:
 	rm -rf build/AppIcon.iconset
