@@ -2,9 +2,13 @@ import SwiftUI
 
 @main
 struct LookUpApp: App {
+    @State private var model = AppModel()
+
     var body: some Scene {
-        MenuBarExtra("Look Up", systemImage: "eye") {
-            Button("Quit Look Up") { NSApplication.shared.terminate(nil) }
+        MenuBarExtra {
+            MenuContent(model: model)
+        } label: {
+            Image(systemName: model.symbolName)
         }
         .menuBarExtraStyle(.menu)
     }
