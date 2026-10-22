@@ -19,6 +19,7 @@ make app       # build build/LookUp.app (release, ad-hoc signed)
 make run       # build and open the app
 make preview   # build and show a break immediately
 make install   # copy the app to /Applications
+make icon      # redraw Resources/AppIcon.icns from scripts/make-icon.swift
 ```
 
 ## Manual test steps

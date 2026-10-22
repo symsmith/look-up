@@ -8,6 +8,8 @@
     <string>Look Up</string>
     <key>CFBundleExecutable</key>
     <string>LookUp</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
     <key>CFBundleIdentifier</key>
     <string>dev.lookup.LookUp</string>
     <key>CFBundleInfoDictionaryVersion</key>

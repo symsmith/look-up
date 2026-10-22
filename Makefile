@@ -1,4 +1,4 @@
-.PHONY: build test app run preview install clean
+.PHONY: build test app icon run preview install clean
 
 build:
 	swift build
@@ -8,6 +8,11 @@ test:
 
 app:
 	scripts/build-app.sh
+
+icon:
+	rm -rf build/AppIcon.iconset
+	swift scripts/make-icon.swift build/AppIcon.iconset
+	iconutil -c icns build/AppIcon.iconset -o Resources/AppIcon.icns
 
 run: app
 	open build/LookUp.app
