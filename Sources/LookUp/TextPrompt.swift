@@ -1,4 +1,5 @@
 import AppKit
+import LookUpCore
 
 @MainActor
 enum TextPrompt {
@@ -11,11 +12,17 @@ enum TextPrompt {
 
         let field = NSTextField(string: initial)
         field.frame = NSRect(x: 0, y: 0, width: 320, height: 24)
-        field.placeholderString = initial
+        field.placeholderString = BreakSettings.defaultMessage
         alert.accessoryView = field
-        alert.window.initialFirstResponder = field
 
-        NSApp.activate()
-        return alert.runModal() == .alertFirstButtonReturn ? field.stringValue : nil
+        let previousApp = NSWorkspace.shared.frontmostApplication
+        NSApp.activate(ignoringOtherApps: true)
+        // NSAlert ignores initialFirstResponder and keeps the panel itself as first responder, so the field gets no caret.
+        RunLoop.main.perform(inModes: [.modalPanel]) {
+            MainActor.assumeIsolated { _ = alert.window.makeFirstResponder(field) }
+        }
+        let response = alert.runModal()
+        previousApp?.activate()
+        return response == .alertFirstButtonReturn ? field.stringValue : nil
     }
 }
