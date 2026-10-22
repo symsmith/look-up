@@ -30,7 +30,7 @@ A macOS menu bar app that applies the 20-20-20 rule: every N minutes, cover all 
 ### Break overlay
 
 - One borderless window per screen, at `.screenSaver` level, joins all Spaces and full-screen apps.
-- Content: dark vibrant background (blur of the desktop + deep gradient), a soft breathing orb (layered blurred circles that scale with the breathing curve), the break text centred in large rounded type, a small `Breathe in / Hold / Breathe out` hint, and a small remaining-seconds countdown.
+- Content: dark vibrant background (blur of the desktop + deep gradient), a soft breathing orb (layered blurred circles that scale with the breathing curve), the break text centred in large rounded type, and a small remaining-seconds countdown. No breathing instructions are shown: the orb's slow motion is the only cue.
 - Breathing curve: 4 s inhale, 1 s hold, 5 s exhale (10 s cycle), sine ease-in-out. Computed by a pure function of elapsed time, driven by `TimelineView(.animation)`.
 - Fade in 0.6 s, fade out 0.6 s.
 - `Esc` or a subtle `Skip` button ends the break early.
@@ -101,9 +101,7 @@ public struct BreakScheduler: Sendable {
 public enum Breathing {
     public static let inhale: TimeInterval, hold: TimeInterval, exhale: TimeInterval
     public static var cycle: TimeInterval { get }
-    public enum Stage: Equatable, Sendable { case inhale, hold, exhale }
     public static func level(at elapsed: TimeInterval) -> Double   // 0...1
-    public static func stage(at elapsed: TimeInterval) -> Stage
 }
 
 public struct PowerAssertion: Equatable, Sendable {

@@ -23,7 +23,7 @@ make install   # copy the app to /Applications
 
 ## Manual test steps
 
-1. Run `make preview`. A break covers every screen. Check the breathing orb, the text, the `Breathe in / Hold / Breathe out` hint and the countdown. Press `Esc` and check that the overlay fades out.
+1. Run `make preview`. A break covers every screen. Check the slowly breathing orb, the text and the countdown. Press `Esc` and check that the overlay fades out.
 2. Run `make run`. Check the `eye` icon in the menu bar. Open the menu and check the status line (`Next break in 20 min`).
 3. Set `Break Interval` to 5 minutes and `Break Duration` to 10 seconds. Wait for the break. Check that it ends by itself after 10 seconds.
 4. Use `Break Text…`, type a new text, save. Use `Start Break Now`. Check the new text. Clear the text and save: the default text comes back.
