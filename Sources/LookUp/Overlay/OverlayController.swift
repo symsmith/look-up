@@ -53,7 +53,11 @@ final class OverlayController {
             closing.forEach { $0.animator().alphaValue = 0 }
         } completionHandler: {
             MainActor.assumeIsolated {
-                closing.forEach { $0.orderOut(nil) }
+                for window in closing {
+                    window.orderOut(nil)
+                    window.contentView = nil
+                    window.close()
+                }
             }
         }
     }

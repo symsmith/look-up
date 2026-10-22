@@ -6,7 +6,7 @@ struct BreakOverlayView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            TimelineView(.animation) { context in
+            TimelineView(.animation(minimumInterval: 1.0 / 30)) { context in
                 let elapsed = context.date.timeIntervalSince(model.startDate)
                 ZStack {
                     NightBackground()

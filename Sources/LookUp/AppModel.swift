@@ -6,7 +6,8 @@ import Observation
 @Observable
 final class AppModel {
     private(set) var settings: BreakSettings
-    private(set) var phase: SchedulerPhase
+    private(set) var statusText: String
+    private(set) var symbolName: String
 
     @ObservationIgnored private var scheduler: BreakScheduler
     @ObservationIgnored private let store: SettingsStore
@@ -25,7 +26,8 @@ final class AppModel {
         self.overlay = OverlayController()
         self.settings = settings
         self.scheduler = scheduler
-        self.phase = scheduler.phase
+        self.statusText = MenuText.status(for: scheduler.phase)
+        self.symbolName = MenuText.symbol(for: scheduler.phase)
         startTimer()
         observeUserPresence()
         if CommandLine.arguments.contains("--preview-break") {
@@ -34,9 +36,6 @@ final class AppModel {
     }
 
     private var isUserAway: Bool { isScreenLocked || isDisplayAsleep }
-
-    var statusText: String { MenuText.status(for: phase) }
-    var symbolName: String { MenuText.symbol(for: phase) }
 
     func update(_ change: (inout BreakSettings) -> Void) {
         var next = settings
@@ -85,7 +84,14 @@ final class AppModel {
         case .breakEnded: overlay.hide()
         case nil: break
         }
-        phase = scheduler.phase
+        refreshMenu()
+    }
+
+    private func refreshMenu() {
+        let status = MenuText.status(for: scheduler.phase)
+        let symbol = MenuText.symbol(for: scheduler.phase)
+        if status != statusText { statusText = status }
+        if symbol != symbolName { symbolName = symbol }
     }
 
     private func showOverlay(now: Date) {
@@ -131,6 +137,6 @@ final class AppModel {
         guard wasAway, !isUserAway else { return }
         tick()
         scheduler.restartCountdown(now: .now)
-        phase = scheduler.phase
+        refreshMenu()
     }
 }

@@ -9,6 +9,7 @@ struct LookUpApp: App {
             MenuContent(model: model)
         } label: {
             Image(systemName: model.symbolName)
+                .accessibilityLabel("Look Up")
         }
         .menuBarExtraStyle(.menu)
     }
