@@ -32,7 +32,6 @@ struct BreathingTests {
         let base = Breathing.level(at: elapsed)
         for k in 1...3 {
             #expect(abs(Breathing.level(at: elapsed + Double(k) * Breathing.cycle) - base) < 1e-6)
-            #expect(Breathing.stage(at: elapsed + Double(k) * Breathing.cycle) == Breathing.stage(at: elapsed))
         }
     }
 
@@ -47,19 +46,14 @@ struct BreathingTests {
         #expect(zip(samples, samples.dropFirst()).allSatisfy { $0 > $1 })
     }
 
-    @Test func stageBoundaries() {
-        #expect(Breathing.stage(at: 0) == .inhale)
-        #expect(Breathing.stage(at: 3.999) == .inhale)
-        #expect(Breathing.stage(at: 4) == .hold)
-        #expect(Breathing.stage(at: 4.999) == .hold)
-        #expect(Breathing.stage(at: 5) == .exhale)
-        #expect(Breathing.stage(at: 9.999) == .exhale)
-        #expect(Breathing.stage(at: 10) == .inhale)
+    @Test func cycleBoundaryRestartsAtZero() {
+        #expect(Breathing.level(at: 3.999) < 1)
+        #expect(Breathing.level(at: 5.001) < 1)
+        #expect(abs(Breathing.level(at: Breathing.cycle)) < tolerance)
     }
 
     @Test func negativeElapsedIsTreatedAsZero() {
         #expect(Breathing.level(at: -3) == Breathing.level(at: 0))
-        #expect(Breathing.stage(at: -3) == .inhale)
     }
 
     @Test func staysInUnitRange() {
