@@ -91,10 +91,10 @@ Sources/LookUpCore   Pure logic: scheduler, breathing curve, pause classifier, s
 Sources/LookUp       App: settings panel, break overlay, system probes
 Tests/LookUpCoreTests
 scripts/             Build, package, notarize, icon
-docs/                Spec and task breakdown
+docs/                Spec, task breakdown, manual test checklist
 ```
 
-See [docs/SPEC.md](docs/SPEC.md) for the full behaviour.
+See [docs/SPEC.md](docs/SPEC.md) for the full behaviour and [docs/TESTING.md](docs/TESTING.md) for the manual test checklist.
 
 ## Releasing
 
@@ -115,19 +115,6 @@ Without secrets, the app is ad-hoc signed. To sign with Developer ID and notariz
 | `APPLE_ID` | Your Apple ID email |
 | `APPLE_TEAM_ID` | Your team ID |
 | `APPLE_APP_PASSWORD` | An app-specific password for `notarytool` |
-
-## Manual test checklist
-
-1. `make preview`: a break covers every screen. Check the breathing orb, the text and the countdown. Press `Esc`: the overlay fades out.
-2. `make run`: click the eye and check the status line (`Next break in 20 min`).
-3. Set the interval to 5 minutes and the duration to 10 seconds. Wait for the break. It ends by itself after 10 seconds.
-4. Type a new break text and click `Start Break Now`: the panel closes and the break shows the new text. Clear the field: the next break shows the default text.
-5. Play a YouTube video: the icon changes to `pause.circle` and the status reads `Paused — media playing`. Pause the video: the countdown resumes.
-6. Join a Google Meet call, or open Photo Booth: `Paused — in a call`.
-7. Play music only: the countdown keeps running.
-8. Switch `Enabled` off: the icon changes to `eye.slash` and no break starts.
-9. Lock the screen for more than 30 seconds and unlock: the countdown restarts at the full interval.
-10. Quit and reopen: your settings are kept.
 
 ## License
 
