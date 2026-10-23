@@ -8,7 +8,7 @@ struct LookUpApp: App {
         MenuBarExtra {
             SettingsPanel(model: model)
         } label: {
-            Image(systemName: model.symbolName)
+            Image(nsImage: EyeIcon.image(for: model.statusIcon))
                 .accessibilityLabel("Look Up")
         }
         .menuBarExtraStyle(.window)

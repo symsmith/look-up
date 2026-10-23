@@ -16,7 +16,7 @@ A macOS menu bar app that applies the 20-20-20 rule: every N minutes, cover all 
 
 ### Menu bar
 
-- Icon: SF Symbol `eye` when active, `eye.slash` when disabled, `pause.circle` when paused.
+- Icon: a custom template image drawn in code (`EyeIcon`): an open eye with lashes when active, a closed eye with lashes when paused, the open eye with a slash when disabled.
 - Clicking the icon opens a native panel (`MenuBarExtra` with `.window` style, SwiftUI grouped `Form`), 340 pt wide. Top to bottom:
   1. Header: app icon, `Look Up`, and the status line: `Next break in 12 min` / `Next break in less than a minute` / `Paused — media playing` / `Paused — in a call` / `On a break` / `Breaks disabled`.
   2. `Enabled` switch (default on).

@@ -1,5 +1,11 @@
 import Foundation
 
+public enum StatusIcon: Sendable, CaseIterable {
+    case open
+    case closed
+    case disabled
+}
+
 public enum DisplayText {
     public static func status(for phase: SchedulerPhase) -> String {
         switch phase {
@@ -16,11 +22,11 @@ public enum DisplayText {
         }
     }
 
-    public static func symbol(for phase: SchedulerPhase) -> String {
+    public static func icon(for phase: SchedulerPhase) -> StatusIcon {
         switch phase {
-        case .disabled: "eye.slash"
-        case .paused: "pause.circle"
-        case .working, .onBreak: "eye"
+        case .disabled: .disabled
+        case .paused: .closed
+        case .working, .onBreak: .open
         }
     }
 

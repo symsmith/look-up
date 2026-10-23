@@ -7,7 +7,7 @@ import Observation
 final class AppModel {
     private(set) var settings: BreakSettings
     private(set) var statusText: String
-    private(set) var symbolName: String
+    private(set) var statusIcon: StatusIcon
 
     @ObservationIgnored private var scheduler: BreakScheduler
     @ObservationIgnored private let store: SettingsStore
@@ -27,7 +27,7 @@ final class AppModel {
         self.settings = settings
         self.scheduler = scheduler
         self.statusText = DisplayText.status(for: scheduler.phase)
-        self.symbolName = DisplayText.symbol(for: scheduler.phase)
+        self.statusIcon = DisplayText.icon(for: scheduler.phase)
         startTimer()
         observeUserPresence()
         if CommandLine.arguments.contains("--preview-break") {
@@ -75,9 +75,9 @@ final class AppModel {
 
     private func refreshStatus() {
         let status = DisplayText.status(for: scheduler.phase)
-        let symbol = DisplayText.symbol(for: scheduler.phase)
+        let icon = DisplayText.icon(for: scheduler.phase)
         if status != statusText { statusText = status }
-        if symbol != symbolName { symbolName = symbol }
+        if icon != statusIcon { statusIcon = icon }
     }
 
     private func showOverlay(now: Date) {

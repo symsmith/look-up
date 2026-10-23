@@ -14,11 +14,12 @@ struct DisplayTextTests {
         #expect(DisplayText.status(for: .onBreak(remaining: 10)) == "On a break")
     }
 
-    @Test func symbols() {
-        #expect(DisplayText.symbol(for: .disabled) == "eye.slash")
-        #expect(DisplayText.symbol(for: .paused(.inCall, remaining: 1)) == "pause.circle")
-        #expect(DisplayText.symbol(for: .working(remaining: 1)) == "eye")
-        #expect(DisplayText.symbol(for: .onBreak(remaining: 1)) == "eye")
+    @Test func icons() {
+        #expect(DisplayText.icon(for: .disabled) == .disabled)
+        #expect(DisplayText.icon(for: .paused(.inCall, remaining: 1)) == .closed)
+        #expect(DisplayText.icon(for: .paused(.mediaPlaying, remaining: 1)) == .closed)
+        #expect(DisplayText.icon(for: .working(remaining: 1)) == .open)
+        #expect(DisplayText.icon(for: .onBreak(remaining: 1)) == .open)
     }
 
     @Test func durations() {
