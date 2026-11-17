@@ -23,8 +23,9 @@ A macOS menu bar app that applies the 20-20-20 rule: every N minutes, cover all 
   3. `Break interval` pop-up: 5, 10, 15, 20, 25, 30, 45, 60 minutes (default 20).
   4. `Break duration` pop-up: 10, 20, 30, 45 seconds, 1, 2 minutes (default 20 seconds).
   5. `Break text` section: an inline text field (up to 3 lines), placeholder `Look at something far away`. Changes save as you type. A blank text shows the default on the break screen (`BreakSettings.displayMessage`).
-  6. Footer: `Quit` (⌘Q) and `Start Break Now` (prominent; closes the panel, then starts a break).
-- Settings persist in `UserDefaults`.
+  6. `Open at login` switch (default off). It registers the app as a login item with `SMAppService.mainApp`. The system owns this state, not `UserDefaults`: the switch reads `SMAppService.mainApp.status` each time the panel opens, so a change in System Settings → General → Login Items shows up.
+  7. Footer: `Quit` (⌘Q) and `Start Break Now` (prominent; closes the panel, then starts a break).
+- Break settings persist in `UserDefaults`.
 
 ### Break overlay
 

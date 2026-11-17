@@ -8,6 +8,7 @@ final class AppModel {
     private(set) var settings: BreakSettings
     private(set) var statusText: String
     private(set) var statusIcon: StatusIcon
+    private(set) var opensAtLogin = LoginItem.isEnabled
 
     @ObservationIgnored private var scheduler: BreakScheduler
     @ObservationIgnored private let store: SettingsStore
@@ -46,6 +47,17 @@ final class AppModel {
         let now = Date.now
         handle(scheduler.apply(next, now: now), now: now)
         if overlay.isVisible { showOverlay(now: now) }
+    }
+
+    func setOpensAtLogin(_ enabled: Bool) {
+        LoginItem.setEnabled(enabled)
+        refreshOpensAtLogin()
+    }
+
+    // The user can also change login items in System Settings, so the system stays the source of truth.
+    func refreshOpensAtLogin() {
+        let current = LoginItem.isEnabled
+        if current != opensAtLogin { opensAtLogin = current }
     }
 
     func startBreakNow() {

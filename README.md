@@ -17,7 +17,7 @@ When a break starts, Look Up covers your screens with a slow breathing animation
 ## Features
 
 - **Menu bar only.** No Dock icon, no main window. One click on the eye opens the settings panel.
-- **Settings:** on/off switch, break interval (5–60 minutes, default 20), break duration (10 seconds to 2 minutes, default 20 seconds), break text.
+- **Settings:** on/off switch, break interval (5–60 minutes, default 20), break duration (10 seconds to 2 minutes, default 20 seconds), break text, open at login.
 - **Break screen** on every display, over full-screen apps and all Spaces. Press `Esc` or click `Skip` to end it early. Focus goes back to the app you were using.
 - **Smart pause.** The countdown freezes while:
   - a video plays (YouTube, Netflix and other browser video, QuickTime, IINA, VLC…);

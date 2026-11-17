@@ -12,3 +12,4 @@ Run these after changes that touch the app shell, the overlay or pause detection
 8. Switch `Enabled` off: the icon changes to the slashed eye and no break starts.
 9. Lock the screen for more than 30 seconds and unlock: the countdown restarts at the full interval.
 10. Quit and reopen: your settings are kept.
+11. `make install`, open `/Applications/LookUp.app` and switch `Open at login` on. Look Up appears in System Settings → General → Login Items. Log out and back in: the eye icon appears. Remove Look Up from Login Items in System Settings, then open the panel: the switch is off.

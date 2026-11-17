@@ -21,6 +21,12 @@ struct SettingsPanel: View {
                         .labelsHidden()
                         .lineLimit(1...3)
                 }
+                Section {
+                    Toggle("Open at login", isOn: Binding(
+                        get: { model.opensAtLogin },
+                        set: { model.setOpensAtLogin($0) }
+                    ))
+                }
             }
             .formStyle(.grouped)
             .scrollDisabled(true)
@@ -28,6 +34,7 @@ struct SettingsPanel: View {
             footer
         }
         .frame(width: 340)
+        .onAppear { model.refreshOpensAtLogin() }
     }
 
     private var header: some View {
